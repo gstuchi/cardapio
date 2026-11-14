@@ -1,0 +1,380 @@
+/* =========================================================
+   Cardápio do Almoço — identidade visual
+   Livro de receitas de cozinha: papel creme, tinta escura,
+   terracota de tomate e verde de cheiro-verde.
+   ========================================================= */
+
+:root {
+  --papel: #f7f1e6;
+  --papel-2: #efe6d6;
+  --cartao: #fffaf2;
+  --tinta: #2a211b;
+  --tinta-2: #5f5248;
+  --tinta-3: #8a7d72;
+  --linha: #2a211b1a;
+  --linha-forte: #2a211b33;
+
+  --tomate: #c2492b;
+  --tomate-suave: #f6dfd3;
+  --oliva: #4f6b34;
+  --oliva-suave: #e2ead2;
+  --mostarda: #c98a12;
+  --mostarda-suave: #f6e7c3;
+  --berinjela: #6d3b5c;
+  --berinjela-suave: #eedde6;
+  --ceu: #2f6a8a;
+  --ceu-suave: #d9e8ef;
+
+  --sombra: 0 1px 2px #2a211b0f, 0 6px 20px -8px #2a211b26;
+  --raio: 18px;
+  --raio-p: 12px;
+
+  --serif: "Fraunces", ui-serif, Georgia, serif;
+  --sans: "Figtree", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --barra: 68px;
+  --seguro-baixo: env(safe-area-inset-bottom, 0px);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --papel: #1b1714;
+    --papel-2: #241f1b;
+    --cartao: #2a2420;
+    --tinta: #f3ebe0;
+    --tinta-2: #cdbfb1;
+    --tinta-3: #9c8f83;
+    --linha: #f3ebe01a;
+    --linha-forte: #f3ebe033;
+
+    --tomate: #ec7a58;
+    --tomate-suave: #4a2a20;
+    --oliva: #a3c47e;
+    --oliva-suave: #2f3a24;
+    --mostarda: #e9b44c;
+    --mostarda-suave: #43361b;
+    --berinjela: #d79bc2;
+    --berinjela-suave: #3d2836;
+    --ceu: #8cc3df;
+    --ceu-suave: #1f3440;
+
+    --sombra: 0 1px 2px #0006, 0 8px 24px -10px #000a;
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 84px;
+}
+
+body {
+  margin: 0;
+  background: var(--papel);
+  color: var(--tinta);
+  font: 17px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0;
+  font-variation-settings: "opsz" 72;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--tomate);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.ico {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  background: var(--tinta);
+  color: var(--papel);
+  padding: 8px 12px;
+  border-radius: 8px;
+  z-index: 50;
+}
+.skip:focus {
+  left: 8px;
+}
+
+/* ---------- Topo e abas ---------- */
+.topo {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px;
+  background: color-mix(in srgb, var(--papel) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(14px);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  border-bottom: 1px solid var(--linha);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.marca-selo {
+  color: var(--tomate);
+  display: grid;
+}
+.marca-selo svg {
+  width: 30px;
+  height: 30px;
+}
+.marca-texto {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+.marca-texto em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--tinta-2);
+}
+
+/* Celular: abas presas embaixo, grandes para o dedo. */
+.abas {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  display: flex;
+  justify-content: space-around;
+  padding: 6px 6px calc(6px + var(--seguro-baixo));
+  background: color-mix(in srgb, var(--cartao) 92%, transparent);
+  backdrop-filter: saturate(1.4) blur(16px);
+  -webkit-backdrop-filter: saturate(1.4) blur(16px);
+  border-top: 1px solid var(--linha);
+}
+.abas a {
+  flex: 1;
+  min-height: 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tinta-3);
+  border-radius: 14px;
+  transition: color 0.2s, background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.abas a .ico {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.25s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+.abas a.ativa {
+  color: var(--tomate);
+}
+.abas a.ativa .ico {
+  transform: translateY(-1px) scale(1.08);
+}
+.abas a:active {
+  background: var(--linha);
+}
+
+/* Telas largas: abas sobem para o topo como pílulas. */
+@media (min-width: 860px) {
+  .abas {
+    position: static;
+    padding: 0;
+    gap: 4px;
+    background: none;
+    border: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .abas a {
+    flex-direction: row;
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: 15px;
+    gap: 8px;
+    border-radius: 999px;
+    color: var(--tinta-2);
+  }
+  .abas a .ico {
+    width: 19px;
+    height: 19px;
+  }
+  .abas a.ativa {
+    background: var(--tinta);
+    color: var(--papel);
+  }
+  .abas a.ativa .ico {
+    transform: none;
+  }
+}
+
+/* ---------- Área das telas ---------- */
+.tela {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px 16px calc(var(--barra) + var(--seguro-baixo) + 32px);
+  animation: entrar 0.35s ease-out both;
+  outline: none;
+}
+@media (min-width: 860px) {
+  .tela {
+    padding: 36px 24px 64px;
+  }
+}
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.sobretitulo {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tomate);
+}
+.titulo-tela {
+  font-size: clamp(32px, 8vw, 46px);
+  margin: 4px 0 8px;
+}
+.lead {
+  color: var(--tinta-2);
+  max-width: 56ch;
+}
+.cabeca-tela {
+  margin-bottom: 22px;
+}
+
+.cartao {
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+/* Etiquetas de papel do prato */
+.papel {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.papel-base { background: var(--mostarda-suave); color: var(--mostarda); }
+.papel-proteina { background: var(--tomate-suave); color: var(--tomate); }
+.papel-acompanhamento { background: var(--oliva-suave); color: var(--oliva); }
+.papel-salada { background: var(--oliva-suave); color: var(--oliva); }
+.papel-prato { background: var(--berinjela-suave); color: var(--berinjela); }
+.papel-junto { background: var(--papel-2); color: var(--tinta-2); }
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--linha-forte);
+  background: var(--cartao);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s, background 0.2s;
+}
+.botao:active {
+  transform: scale(0.97);
+}
+.botao-primario {
+  background: var(--tomate);
+  border-color: transparent;
+  color: #fff;
+}
+.botao-escuro {
+  background: var(--tinta);
+  border-color: transparent;
+  color: var(--papel);
+}
+
+.vazio {
+  text-align: center;
+  color: var(--tinta-3);
+  padding: 40px 16px;
+}
+
+.regras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+.regras span {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--papel-2);
+  color: var(--tinta-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
