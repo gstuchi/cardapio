@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cardápio do Almoço</title>
+  <meta name="description" content="Almoço de segunda a sexta em ciclo de duas semanas, com receitas passo a passo e lista de compras.">
+  <meta name="theme-color" content="#F7F1E6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1B1714" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icone.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Cardápio">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+</head>
+<body>
+  <a class="skip" href="#main">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <a class="marca" href="#/hoje" aria-label="Cardápio do Almoço, início">
+      <span class="marca-selo" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="15" fill="currentColor"/><path d="M9 17h14a7 7 0 0 1-14 0Z" fill="var(--papel)"/><path d="M13 13c0-2 2-2 2-4M17 13c0-2 2-2 2-4" stroke="var(--papel)" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+      </span>
+      <span class="marca-texto">Cardápio <em>do Almoço</em></span>
+    </a>
+    <nav class="abas" id="abas" aria-label="Seções"></nav>
+  </header>
+
+  <main id="main" tabindex="-1"></main>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/hoje.js"></script>
+  <script src="js/cardapio.js"></script>
+  <script src="js/receitas.js"></script>
+  <script src="js/compras.js"></script>
+  <script src="js/rotina.js"></script>
+  <script>
+    // Instala o app no celular para abrir sem internet (só em http/https).
+    if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+      addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+    }
+  </script>
+</body>
+</html>
