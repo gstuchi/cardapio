@@ -144,10 +144,16 @@ button {
   justify-content: space-between;
   gap: 16px;
   padding: calc(10px + env(safe-area-inset-top, 0px)) 16px 10px;
-  background: color-mix(in srgb, var(--papel) 88%, transparent);
-  backdrop-filter: saturate(1.4) blur(14px);
-  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  background: var(--papel);
   border-bottom: 1px solid var(--linha);
+}
+/* backdrop-filter no topo prenderia a barra de abas fixa dentro dele; só liga no desktop, onde as abas ficam no topo. */
+@media (min-width: 860px) {
+  .topo {
+    background: color-mix(in srgb, var(--papel) 88%, transparent);
+    backdrop-filter: saturate(1.4) blur(14px);
+    -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  }
 }
 
 .marca {
