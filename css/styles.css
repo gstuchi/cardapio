@@ -690,3 +690,172 @@ button {
   gap: 10px;
   margin-top: 18px;
 }
+
+/* =========================================================
+   Tela: Cardápio
+   ========================================================= */
+.seletor-semana {
+  position: sticky;
+  top: calc(57px + env(safe-area-inset-top, 0px));
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  margin: 0 -4px 20px;
+  border-radius: 999px;
+  background: var(--papel-2);
+  box-shadow: 0 6px 16px -10px #0005;
+}
+.seletor-semana button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font-weight: 700;
+  color: var(--tinta-2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.seletor-semana button[aria-selected="true"] {
+  background: var(--cartao);
+  color: var(--tinta);
+  box-shadow: var(--sombra);
+}
+.ponto {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--tomate);
+}
+
+.semana {
+  scroll-margin-top: 130px;
+  margin-bottom: 36px;
+}
+.semana-cabeca {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--tinta);
+}
+.semana-cabeca h2 {
+  font-size: 30px;
+}
+.semana-cabeca p {
+  font-size: 14px;
+  color: var(--tinta-3);
+}
+.dias {
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 640px) {
+  .dias {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.dia {
+  scroll-margin-top: 130px;
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dia-hoje {
+  border: 2px solid var(--tomate);
+  box-shadow: 0 0 0 4px var(--tomate-suave), var(--sombra);
+}
+.dia-cabeca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.dia-cabeca h3 {
+  font-size: 24px;
+}
+.dia-tipo {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tinta-3);
+}
+.dia-selo {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--tomate);
+  color: #fff;
+}
+/* A coluna das etiquetas se ajusta à mais larga do dia. */
+.dia-itens {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  gap: 8px 12px;
+}
+.dia-itens li {
+  display: contents;
+}
+.dia-itens .papel {
+  justify-self: start;
+}
+.dia-itens a {
+  font-weight: 600;
+  text-decoration-color: var(--linha-forte);
+  text-underline-offset: 4px;
+  padding: 4px 0;
+}
+.dia-suco {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: var(--tinta-2);
+}
+.dia-suco .ico {
+  width: 18px;
+  height: 18px;
+  color: var(--mostarda);
+}
+.dia-suco a {
+  font-weight: 600;
+  color: var(--tinta);
+  text-underline-offset: 3px;
+}
+.mudo {
+  color: var(--tinta-3);
+}
+.dia-vespera {
+  margin-top: auto;
+  display: grid;
+  gap: 2px;
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 10px 12px;
+  border-radius: var(--raio-p);
+  background: var(--ceu-suave);
+  color: var(--tinta-2);
+}
+.dia-vespera strong {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ceu);
+}
