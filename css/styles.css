@@ -859,3 +859,598 @@ button {
   text-transform: uppercase;
   color: var(--ceu);
 }
+
+/* =========================================================
+   Telas: Receitas e ficha
+   ========================================================= */
+.cat-bases { --cat: var(--mostarda); --cat-suave: var(--mostarda-suave); }
+.cat-proteinas { --cat: var(--tomate); --cat-suave: var(--tomate-suave); }
+.cat-acompanhamentos { --cat: var(--oliva); --cat-suave: var(--oliva-suave); }
+.cat-especiais { --cat: var(--berinjela); --cat-suave: var(--berinjela-suave); }
+.cat-sucos { --cat: var(--ceu); --cat-suave: var(--ceu-suave); }
+.cat-variar { --cat: var(--tinta-2); --cat-suave: var(--papel-2); }
+
+.busca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  min-height: 52px;
+  border-radius: 999px;
+  background: var(--cartao);
+  border: 1px solid var(--linha-forte);
+  color: var(--tinta-3);
+}
+.busca:focus-within {
+  border-color: var(--tomate);
+  box-shadow: 0 0 0 3px var(--tomate-suave);
+}
+.busca input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--tinta);
+  outline: none;
+}
+.filtros {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin: 14px -16px 22px;
+  padding: 0 16px 4px;
+  scrollbar-width: none;
+}
+.filtros::-webkit-scrollbar {
+  display: none;
+}
+.filtro {
+  flex: none;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--linha-forte);
+  background: none;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.filtro[aria-pressed="true"] {
+  background: var(--tinta);
+  color: var(--papel);
+  border-color: transparent;
+}
+
+.grupo-receitas {
+  margin-bottom: 28px;
+}
+.grupo-receitas h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.grupo-nota {
+  font-size: 15px;
+  color: var(--tinta-2);
+  margin: -4px 0 12px;
+}
+.grade-receitas {
+  display: grid;
+  gap: 10px;
+}
+@media (min-width: 560px) {
+  .grade-receitas {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.receita-cartao {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px 14px 20px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.15s;
+}
+.receita-cartao::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--cat);
+}
+.receita-cartao:active {
+  transform: scale(0.985);
+}
+.receita-cat {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cat);
+}
+.receita-nome {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.receita-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--tinta-3);
+}
+.receita-meta .ico {
+  width: 16px;
+  height: 16px;
+}
+.receita-troca {
+  font-size: 13px;
+  color: var(--tinta-2);
+  margin-top: 4px;
+}
+
+/* ---------- Ficha ---------- */
+.voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  margin: -8px 0 4px -6px;
+  padding-right: 10px;
+  font-weight: 600;
+  color: var(--tinta-2);
+  text-decoration: none;
+}
+.ficha-cabeca {
+  margin-bottom: 22px;
+}
+.ficha-cabeca .sobretitulo {
+  color: var(--cat);
+}
+.ficha-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  color: var(--tinta-2);
+  font-weight: 500;
+}
+.ficha-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ficha-meta .ico {
+  width: 19px;
+  height: 19px;
+  color: var(--cat);
+}
+.ficha-troca,
+.ficha-usos {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--tinta-3);
+}
+.ficha-troca {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 10px;
+  background: var(--cat-suave);
+  color: var(--tinta-2);
+  font-weight: 600;
+}
+.botao-cozinha {
+  width: 100%;
+  margin-top: 18px;
+  min-height: 54px;
+  font-size: 17px;
+}
+.botao-cozinha .ico {
+  color: var(--mostarda);
+}
+@media (min-width: 560px) {
+  .botao-cozinha {
+    width: auto;
+  }
+}
+
+.ficha-corpo {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 860px) {
+  .ficha-corpo {
+    grid-template-columns: 5fr 7fr;
+    align-items: start;
+  }
+  .ficha-corpo > :first-child {
+    position: sticky;
+    top: 84px;
+  }
+}
+.ficha-bloco {
+  padding: 18px 16px;
+}
+.ficha-bloco-cabeca {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.ficha-bloco-cabeca h2 {
+  font-size: 22px;
+}
+.contador {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tinta-3);
+}
+.contador.completo {
+  color: var(--oliva);
+}
+
+.ingredientes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ing-grupo {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-3);
+  padding: 14px 0 4px;
+}
+.ing {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 9px 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.ing input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.ing-caixa {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border-radius: 7px;
+  border: 2px solid var(--linha-forte);
+  display: grid;
+  place-items: center;
+  color: transparent;
+  transition: background 0.15s, border-color 0.15s;
+}
+.ing-caixa .ico {
+  width: 16px;
+  height: 16px;
+  stroke-width: 3;
+}
+.ing input:checked + .ing-caixa {
+  background: var(--oliva);
+  border-color: var(--oliva);
+  color: var(--cartao);
+}
+.ing input:focus-visible + .ing-caixa {
+  outline: 3px solid var(--tomate);
+  outline-offset: 2px;
+}
+.ing input:checked ~ .ing-texto {
+  text-decoration: line-through;
+  color: var(--tinta-3);
+}
+
+.passos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+.passo {
+  display: flex;
+  gap: 14px;
+  padding: 10px 0;
+  transition: opacity 0.2s;
+}
+.passo + .passo {
+  border-top: 1px solid var(--linha);
+}
+.passo-num {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--cat-suave, var(--papel-2));
+  color: var(--cat, var(--tinta));
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.ficha-corpo .passo-num {
+  background: var(--tomate-suave);
+  color: var(--tomate);
+}
+.passo-num .ico {
+  display: none;
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.6;
+}
+.passo.feito .passo-num {
+  background: var(--oliva);
+  color: #fff;
+}
+.passo.feito .passo-num span {
+  display: none;
+}
+.passo.feito .passo-num .ico {
+  display: block;
+}
+.passo.feito .passo-corpo p {
+  color: var(--tinta-3);
+}
+.passo-corpo {
+  flex: 1;
+  padding-top: 7px;
+}
+.botao-timer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--ceu) 40%, transparent);
+  background: var(--ceu-suave);
+  color: var(--ceu);
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+.botao-timer .ico {
+  width: 17px;
+  height: 17px;
+}
+
+.dica {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: var(--raio-p);
+  background: var(--mostarda-suave);
+}
+.dica strong {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mostarda);
+  margin-bottom: 2px;
+}
+
+/* ---------- Timers ---------- */
+/* Com timer na tela, o fim da página ganha espaço para nada ficar escondido atrás dele. */
+.com-timers .tela {
+  padding-bottom: calc(var(--barra) + var(--seguro-baixo) + 120px);
+}
+.bandeja-timers {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(var(--barra) + var(--seguro-baixo) + 12px);
+  z-index: 60;
+  display: grid;
+  gap: 8px;
+  pointer-events: none;
+}
+@media (min-width: 860px) {
+  .bandeja-timers {
+    left: auto;
+    right: 24px;
+    bottom: 24px;
+    width: 320px;
+  }
+}
+.timer {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px 10px 16px;
+  border-radius: 18px;
+  background: var(--tinta);
+  color: var(--papel);
+  box-shadow: 0 10px 30px -10px #000a;
+  animation: subir 0.3s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+.timer > .ico {
+  color: var(--mostarda);
+}
+.timer-texto {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+.timer-texto strong {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.timer-texto span {
+  font-size: 13px;
+  opacity: 0.75;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.timer-fechar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: #ffffff1f;
+  color: inherit;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.timer.pronto {
+  background: var(--tomate);
+  color: #fff;
+  animation: pulsar 1s ease-in-out infinite;
+}
+.timer.pronto > .ico {
+  color: #fff;
+}
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+}
+@keyframes pulsar {
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+/* ---------- Modo cozinha ---------- */
+.sem-rolagem {
+  overflow: hidden;
+}
+.cozinha {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) 18px calc(18px + var(--seguro-baixo));
+  background: var(--papel);
+  animation: entrar 0.25s ease-out both;
+}
+/* Com o modo cozinha aberto não há barra de abas: o timer desce e o passo abre espaço para ele. */
+.com-timers .cozinha {
+  padding-bottom: calc(96px + var(--seguro-baixo));
+}
+.sem-rolagem .bandeja-timers {
+  bottom: calc(14px + var(--seguro-baixo));
+}
+.cozinha-topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cozinha-sair {
+  width: 48px;
+  height: 48px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--linha-forte);
+  background: var(--cartao);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.cozinha-receita {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.2;
+}
+.cozinha-tela {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--tinta-3);
+}
+.cozinha-tela .ico {
+  width: 14px;
+  height: 14px;
+}
+.cozinha-progresso {
+  display: flex;
+  gap: 4px;
+  margin: 16px 0 0;
+}
+.cozinha-progresso span {
+  flex: 1;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--linha-forte);
+  transition: background 0.3s;
+}
+.cozinha-progresso .feito {
+  background: var(--oliva);
+}
+.cozinha-progresso .atual {
+  background: var(--tomate);
+}
+.cozinha-passo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+  overflow-y: auto;
+}
+.cozinha-num {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tomate);
+}
+.cozinha-texto {
+  font-family: var(--serif);
+  font-size: clamp(26px, 7.2vw, 44px);
+  line-height: 1.25;
+  font-weight: 400;
+  animation: entrar 0.3s ease-out both;
+}
+.botao-timer-grande {
+  align-self: flex-start;
+  min-height: 54px;
+  font-size: 17px;
+  background: var(--ceu-suave);
+  border-color: transparent;
+  color: var(--ceu);
+}
+.botao-timer-grande:disabled {
+  opacity: 0.7;
+}
+.cozinha-nav {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 10px;
+  max-width: 720px;
+  width: 100%;
+  margin: 0 auto;
+}
+.cozinha-nav .botao {
+  min-height: 62px;
+  font-size: 18px;
+}
+.cozinha-nav .botao:disabled {
+  opacity: 0.4;
+}
