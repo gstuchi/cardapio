@@ -30,7 +30,7 @@
         <a class="prato" href="#/receita/${item.r}">
           <span class="papel ${classePapel(item.papel)}">${esc(item.papel)}</span>
           <span class="prato-nome">${esc(item.nome)}</span>
-          <span class="prato-tempo">${esc(rec.tempo.replace(/\s*\(.*\)/, ""))}</span>
+          <span class="prato-tempo">${item.r === "feijao" ? "só esquentar" : esc(rec.tempo.replace(/\s*\(.*\)/, ""))}</span>
           ${icone("seta", "prato-seta")}
         </a>
       </li>`;
