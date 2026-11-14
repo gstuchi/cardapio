@@ -105,15 +105,17 @@
   }
 
   function semanaResumo(hoje) {
-    const s = ciclo.semana(hoje);
-    const seg = new Date(hoje);
+    // No fim de semana, o resumo já mostra a semana que vai começar.
     const dow = hoje.getDay();
-    seg.setDate(hoje.getDate() - (dow === 0 ? 6 : dow - 1));
+    const base = dow === 0 || dow === 6 ? ciclo.proximoUtil(hoje) : hoje;
+    const s = ciclo.semana(base);
+    const seg = new Date(base);
+    seg.setDate(base.getDate() - (base.getDay() - 1));
     const sem = D.semanas[s];
     return `
       <section class="resumo" aria-labelledby="resumo-titulo">
         <div class="resumo-cabeca">
-          <h2 id="resumo-titulo">${esc(sem.nome)}</h2>
+          <h2 id="resumo-titulo">${esc(sem.nome)}${base === hoje ? "" : ` <small>a seguir</small>`}</h2>
           <a href="#/cardapio" data-rolar="semana-${s}">Ver as duas semanas</a>
         </div>
         <ol class="resumo-dias">
@@ -184,13 +186,20 @@
           <p class="sobretitulo">${NOMES_DIA[hoje.getDay()]}, ${fmtData.format(hoje)}</p>
           <h1 class="titulo-tela">${info ? "O que tem hoje" : "Bom descanso"}</h1>
           <p class="ciclo-linha">
-            <span class="ciclo-chip">${esc(D.semanas[s].nome)} do ciclo</span>
+            <span class="ciclo-chip">${
+              info ? `${esc(D.semanas[s].nome)} do ciclo` : `Segunda começa a ${esc(D.semanas[ciclo.semana(ciclo.proximoUtil(hoje))].nome)}`
+            }</span>
             <button class="link-discreto" type="button" data-trocar>Não é essa?</button>
           </p>
         </div>
         ${info ? cartaoAlmoco(info) : cartaoFimDeSemana(hoje)}
         ${cartaoVespera(hoje)}
         ${semanaResumo(hoje)}`;
+
+      // Na faixa da semana, deixa o dia de hoje à vista.
+      const faixa = el.querySelector(".resumo-dias");
+      const diaHoje = faixa.querySelector(".hoje");
+      if (diaHoje) faixa.scrollLeft = diaHoje.offsetLeft - faixa.offsetLeft - 16;
 
       el.querySelector("[data-trocar]").addEventListener("click", () => {
         ciclo.definir(s === 0 ? 1 : 0, hoje);
