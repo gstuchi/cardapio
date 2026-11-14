@@ -1454,3 +1454,194 @@ button {
 .cozinha-nav .botao:disabled {
   opacity: 0.4;
 }
+
+/* =========================================================
+   Tela: Lista de compras
+   ========================================================= */
+.atalhos {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  margin: 0 -16px 18px;
+  padding: 0 16px 4px;
+  scrollbar-width: none;
+}
+.atalhos::-webkit-scrollbar {
+  display: none;
+}
+.atalhos a {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--linha-forte);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.atalhos a.davez {
+  border-color: var(--tomate);
+  color: var(--tomate);
+  background: var(--tomate-suave);
+}
+
+.lista {
+  scroll-margin-top: 76px;
+  padding: 18px 16px 8px;
+  margin-bottom: 16px;
+}
+.lista-davez {
+  border: 2px solid var(--tomate);
+}
+.selo-davez {
+  margin-left: 6px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--tomate);
+  color: #fff;
+  letter-spacing: 0.04em;
+}
+.lista-cabeca {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 6px;
+}
+.lista-cabeca h2 {
+  font-size: 26px;
+  margin: 4px 0 4px;
+}
+.lista-nota {
+  font-size: 15px;
+  color: var(--tinta-2);
+}
+.barra {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--papel-2);
+  overflow: hidden;
+}
+.barra span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--oliva);
+  transition: width 0.35s cubic-bezier(0.3, 1.2, 0.5, 1);
+}
+.lista-acoes {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 8px;
+}
+.lista-conta {
+  font-size: 14px;
+  color: var(--tinta-3);
+  margin-right: auto;
+}
+.lista-conta strong {
+  font-size: 18px;
+  color: var(--tinta);
+}
+.lista.completa .lista-conta strong {
+  color: var(--oliva);
+}
+
+.lista-grupo h3 {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--tinta-3);
+  padding: 14px 0 2px;
+  border-top: 1px solid var(--linha);
+  margin-top: 8px;
+}
+.lista-grupo ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.item input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.item input:checked + .ing-caixa {
+  background: var(--oliva);
+  border-color: var(--oliva);
+  color: var(--cartao);
+}
+.item input:focus-visible + .ing-caixa {
+  outline: 3px solid var(--tomate);
+  outline-offset: 2px;
+}
+.item-texto {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+}
+.item-nome {
+  font-weight: 600;
+  line-height: 1.3;
+}
+.item-det {
+  font-size: 13px;
+  color: var(--tinta-3);
+}
+.item-qtd {
+  flex: none;
+  max-width: 44%;
+  text-align: right;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--tinta-2);
+  font-variant-numeric: tabular-nums;
+}
+.item input:checked ~ .item-texto,
+.item input:checked ~ .item-qtd {
+  opacity: 0.45;
+}
+.item input:checked ~ .item-texto .item-nome {
+  text-decoration: line-through;
+}
+
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--barra) + var(--seguro-baixo) + 16px);
+  z-index: 70;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  pointer-events: none;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--tinta);
+  color: var(--papel);
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  box-shadow: 0 10px 30px -10px #000a;
+  transition: opacity 0.25s, transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.aviso.visivel {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+@media (min-width: 860px) {
+  .aviso {
+    bottom: 28px;
+  }
+}
