@@ -3,10 +3,9 @@
  * e um resumo da semana. Na primeira vez, pergunta em qual semana do ciclo a casa está.
  */
 (function () {
-  const { D, esc, receita, store, ciclo, icone, ir, DIAS_UTEIS, NOMES_DIA } = App;
+  const { D, esc, receita, store, ciclo, icone, ir, classePapel, DIAS_UTEIS, NOMES_DIA } = App;
 
   const fmtData = new Intl.DateTimeFormat("pt-BR", { day: "numeric", month: "long" });
-  const classePapel = (p) => "papel-" + p.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
   /** "1h15 (1h no forno)" → 75, "25 min" → 25. */
   function minutos(tempo) {

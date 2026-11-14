@@ -15,6 +15,9 @@
 
   const receita = (id) => D.receitas.find((r) => r.id === id);
 
+  /** "Proteína" → "papel-proteina": classe de cor da etiqueta do prato. */
+  const classePapel = (papel) => "papel-" + papel.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+
   // localStorage pode falhar (aba anônima, armazenamento cheio): o app segue funcionando sem salvar.
   const store = {
     get(chave, padrao) {
@@ -183,5 +186,5 @@
     renderizar();
   });
 
-  window.App = { D, esc, receita, store, ciclo, icone, tela, ir, DIAS_UTEIS, NOMES_DIA };
+  window.App = { D, esc, receita, classePapel, store, ciclo, icone, tela, ir, DIAS_UTEIS, NOMES_DIA };
 })();
