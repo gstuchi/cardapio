@@ -14,15 +14,6 @@ Cardápio de almoço de segunda a sexta em ciclo de duas semanas, com receita pa
 
 Todo o conteúdo fica em [`js/data.js`](js/data.js): semanas, receitas, listas de compras e rotina. Para trocar um prato, uma quantidade ou um passo, edite só esse arquivo. Se mudar a lista de arquivos do app, suba a `VERSAO` em [`sw.js`](sw.js).
 
-## Rodar no computador
-
-Não tem build nem dependência. Basta servir a pasta:
-
-```bash
-python3 -m http.server 5173
-```
-
-e abrir <http://localhost:5173>.
 
 ## Instalar no celular
 
