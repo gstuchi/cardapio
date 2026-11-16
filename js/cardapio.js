@@ -14,6 +14,7 @@
           <h3 id="dia-${s}-${i}-t">${esc(dia.dia)}</h3>
           <span class="dia-tipo">${esc(dia.tipo)}</span>
           ${eHoje ? `<span class="dia-selo">Hoje</span>` : ""}
+          ${dia.trocado ? `<span class="selo-casa">Trocado</span>` : ""}
         </header>
         <ul class="dia-itens">
           ${dia.itens
@@ -34,6 +35,7 @@
           <strong>Na véspera</strong>
           <span>${esc(dia.vespera)}</span>
         </p>
+        ${Banco.conectado ? `<a class="dia-trocar" href="#/trocar/${s}/${i}">${icone("trocar")}Trocar pratos</a>` : ""}
       </article>`;
   }
 

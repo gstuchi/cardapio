@@ -16,6 +16,7 @@ const ARQUIVOS = [
   "./js/receitas.js",
   "./js/compras.js",
   "./js/rotina.js",
+  "./js/editar.js",
   "./manifest.webmanifest",
   "./icons/icone.svg",
   "./icons/icone-192.png",
