@@ -9,19 +9,21 @@
   function cartaoCasa() {
     if (!Banco.disponivel) return "";
     const est = Banco.estado;
-    if (Banco.codigo && est !== "codigo-errado") {
+    if (Banco.codigo) {
       const n = Banco.receitasCasa().length;
       const t = Banco.diasTrocados();
-      const status = {
-        ok: "Conectado. Receitas novas e pratos trocados aparecem para todo mundo da casa.",
-        conectando: "Conectando ao banco da casa…",
-        erro: "Sem conexão agora. Mostrando a última cópia guardada no celular.",
-      }[est] || "";
+      const p = Banco.pendentes();
+      const status =
+        est === "offline" || est === "muitas-tentativas"
+          ? "Sem conexão agora. Mostrando a última cópia guardada no celular; o que for salvo sobe quando a internet voltar."
+          : "Conectado. Receitas novas e pratos trocados aparecem para todo mundo da casa.";
       return `
         <section class="cartao ajustes casa" id="ajustes-casa" aria-labelledby="casa-t">
           <h2 id="casa-t">Receitas da casa</h2>
           <p>${esc(status)}</p>
-          <p class="casa-resumo">${n} ${n === 1 ? "receita nova" : "receitas novas"} · ${t} ${t === 1 ? "dia trocado" : "dias trocados"}</p>
+          <p class="casa-resumo">${n} ${n === 1 ? "receita nova" : "receitas novas"} · ${t} ${t === 1 ? "dia trocado" : "dias trocados"}${
+            p ? ` · ${p} ${p === 1 ? "mudança esperando" : "mudanças esperando"} internet` : ""
+          }</p>
           <div class="ajustes-botoes">
             <a class="botao" href="#/nova-receita">${icone("mais")}Nova receita</a>
             <button type="button" class="botao" data-sair>Desconectar este celular</button>
@@ -38,12 +40,13 @@
             <input name="codigo" autocomplete="off" autocapitalize="none" spellcheck="false" required>
           </label>
           ${
-            est === "codigo-errado"
-              ? `<p class="campo-erro" role="alert">Código não encontrado. Confira e tente de novo.</p>`
-              : est === "erro"
-              ? `<p class="campo-erro" role="alert">Sem internet ou o banco não respondeu. Tente de novo daqui a pouco.</p>`
-              : ""
+            {
+              "codigo-errado": `<p class="campo-erro" role="alert">Código não encontrado. Confira e tente de novo.</p>`,
+              "muitas-tentativas": `<p class="campo-erro" role="alert">Muitas tentativas com código errado. Espere uma hora e tente de novo.</p>`,
+              erro: `<p class="campo-erro" role="alert">Sem internet ou o banco não respondeu. Tente de novo daqui a pouco.</p>`,
+            }[est] || ""
           }
+          ${est === "conectando" ? `<p class="casa-resumo" role="status">Conferindo o código…</p>` : ""}
           <button type="submit" class="botao botao-primario">Entrar</button>
         </form>
       </section>`;

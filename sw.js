@@ -43,9 +43,8 @@ self.addEventListener("fetch", (e) => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   const fonte = url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com";
-  // Biblioteca do Firebase (banco da casa): guardada para o app abrir sem internet com as receitas da casa.
-  const firebase = url.hostname === "www.gstatic.com" && url.pathname.startsWith("/firebasejs/");
-  if (url.origin !== location.origin && !fonte && !firebase) return;
+  // Outras origens (como a API do banco da casa) passam direto, sem cache.
+  if (url.origin !== location.origin && !fonte) return;
 
   e.respondWith(
     caches.open(VERSAO).then(async (cache) => {

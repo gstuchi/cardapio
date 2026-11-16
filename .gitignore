@@ -2,3 +2,5 @@
 .claude/
 node_modules/
 *-debug.log
+.wrangler/
+.dev.vars

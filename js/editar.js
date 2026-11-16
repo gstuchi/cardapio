@@ -21,22 +21,11 @@
     });
   }
 
-  /** Esperando o banco responder (abriu o app agora). Redesenha quando conectar. */
-  function conectando(el) {
-    el.innerHTML = `<p class="vazio">Conectando ao banco da casa…</p>`;
-    const espera = setInterval(() => {
-      if (Banco.estado !== "conectando") {
-        clearInterval(espera);
-        App.renderizar();
-      }
-    }, 300);
-    return () => clearInterval(espera);
-  }
-
+  /** true quando a tela não pode abrir (sem banco ou sem código); já desenhou o aviso. */
   function precisaBanco(el) {
-    if (!Banco.disponivel || !Banco.codigo) return semCodigo(el) || true;
-    if (Banco.estado === "conectando") return conectando(el);
-    return null;
+    if (Banco.disponivel && Banco.codigo) return false;
+    semCodigo(el);
+    return true;
   }
 
   const linhas = (txt) =>
@@ -53,8 +42,7 @@
   // Receita nova / editar
   // =========================================================
   function telaReceita(el, [id]) {
-    const espera = precisaBanco(el);
-    if (espera) return typeof espera === "function" ? espera : undefined;
+    if (precisaBanco(el)) return;
 
     const r = id ? receita(id) : null;
     if (id && !r?.casa) {
@@ -188,8 +176,7 @@
     dono: "cardapio",
     titulo: () => "Trocar pratos",
     render(el, params) {
-      const espera = precisaBanco(el);
-      if (espera) return typeof espera === "function" ? espera : undefined;
+      if (precisaBanco(el)) return;
 
       const s = Number(params[0]);
       const i = Number(params[1]);
