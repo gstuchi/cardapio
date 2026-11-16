@@ -3,13 +3,14 @@
  * Arquivos do app: responde do cache e atualiza por trás (a versão nova aparece na próxima abertura).
  * Ao mudar a lista de arquivos, suba a VERSAO.
  */
-const VERSAO = "cardapio-v1";
+const VERSAO = "cardapio-v2";
 const ARQUIVOS = [
   "./",
   "./index.html",
   "./css/styles.css",
   "./js/data.js",
   "./js/app.js",
+  "./js/banco.js",
   "./js/hoje.js",
   "./js/cardapio.js",
   "./js/receitas.js",
@@ -41,7 +42,9 @@ self.addEventListener("fetch", (e) => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   const fonte = url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com";
-  if (url.origin !== location.origin && !fonte) return;
+  // Biblioteca do Firebase (banco da casa): guardada para o app abrir sem internet com as receitas da casa.
+  const firebase = url.hostname === "www.gstatic.com" && url.pathname.startsWith("/firebasejs/");
+  if (url.origin !== location.origin && !fonte && !firebase) return;
 
   e.respondWith(
     caches.open(VERSAO).then(async (cache) => {

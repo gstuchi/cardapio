@@ -117,6 +117,9 @@
     fogo: '<path d="M12 22c4 0 7-2.8 7-6.7 0-4.3-3.6-6.3-4.6-10.3-2.4 1.6-3.4 4-3.4 6-1.3-.7-2-2-2.2-3.3C7 9.4 5 12 5 15.3 5 19.2 8 22 12 22Z"/>',
     tela: '<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/>',
     fechar: '<path d="M6 6l12 12M18 6 6 18"/>',
+    mais: '<path d="M12 5v14M5 12h14"/>',
+    lapis: '<path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="m13.5 6.5 4 4"/>',
+    trocar: '<path d="M4 8h13l-3-3M20 16H7l3 3"/>',
   };
   const icone = (nome, cls = "") =>
     `<svg class="ico ${cls}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONES[nome] || ""}</svg>`;
@@ -153,7 +156,9 @@
   }
 
   let limparTela = null;
-  function renderizar() {
+  /** Desenha a tela da rota atual. manterRolagem: redesenho por dado novo, sem pular para o topo. */
+  function renderizar(opcoes = {}) {
+    const rolagem = window.scrollY;
     if (!telas.length) return;
     const { nome, params } = rotaAtual();
     const t = telas.find((x) => x.id === nome || (x.rotas || []).includes(nome)) || telas[0];
@@ -169,7 +174,7 @@
       sessionStorage.removeItem("cardapio:rolar");
       requestAnimationFrame(() => document.getElementById(alvo)?.scrollIntoView({ block: "start" }));
     } else {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, opcoes.manterRolagem ? rolagem : 0);
     }
   }
 
@@ -180,11 +185,11 @@
     else location.hash = rota;
   }
 
-  window.addEventListener("hashchange", renderizar);
+  window.addEventListener("hashchange", () => renderizar());
   window.addEventListener("DOMContentLoaded", () => {
     if (!location.hash) history.replaceState(null, "", "#/" + (telas[0]?.id || ""));
     renderizar();
   });
 
-  window.App = { D, esc, receita, classePapel, store, ciclo, icone, tela, ir, DIAS_UTEIS, NOMES_DIA };
+  window.App = { D, esc, receita, classePapel, store, ciclo, icone, tela, ir, renderizar, DIAS_UTEIS, NOMES_DIA };
 })();
