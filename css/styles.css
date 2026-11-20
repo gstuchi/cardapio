@@ -73,6 +73,25 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: 84px;
+  /* Sem o "elástico" do navegador ao passar do topo ou do fim da página. */
+  overscroll-behavior: none;
+}
+
+/* Cara de app: sem zoom por duplo toque, sem seleção de texto, sem menu de toque longo
+   e sem o flash cinza ao tocar. Campos de texto continuam selecionáveis. */
+body {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+input,
+textarea,
+[contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+  -webkit-touch-callout: default;
 }
 
 body {

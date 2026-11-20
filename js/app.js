@@ -180,6 +180,9 @@
     else location.hash = rota;
   }
 
+  // O Safari do iPhone ignora user-scalable=no; bloquear o gesto de pinça é o que trava o zoom.
+  document.addEventListener("gesturestart", (e) => e.preventDefault());
+
   window.addEventListener("hashchange", renderizar);
   window.addEventListener("DOMContentLoaded", () => {
     if (!location.hash) history.replaceState(null, "", "#/" + (telas[0]?.id || ""));
