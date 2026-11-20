@@ -1,0 +1,15 @@
+{
+  "name": "cardapio-servidor",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "banco:local": "wrangler d1 execute cardapio --local --file schema.sql",
+    "test": "node --test testes/*.test.mjs",
+    "deploy": "wrangler deploy",
+    "codigo": "node novo-codigo.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.40.0"
+  }
+}

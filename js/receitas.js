@@ -136,6 +136,7 @@
         <strong class="receita-nome">${esc(r.nome)}</strong>
         <span class="receita-meta">${icone("relogio")}${esc(r.tempo)}</span>
         ${r.troca ? `<span class="receita-troca">${esc(r.troca)}</span>` : ""}
+        ${r.casa ? `<span class="selo-casa">Da casa</span>` : ""}
       </a>`;
   }
 
@@ -149,6 +150,7 @@
           <p class="sobretitulo">Fichas para a cozinha</p>
           <h1 class="titulo-tela">Receitas</h1>
           <p class="lead">Antes de ligar o fogo, separe e corte todos os ingredientes da lista. Depois siga os passos na ordem. Todas rendem 5 a 6 porções.</p>
+          ${Banco.disponivel ? `<a class="botao botao-escuro botao-nova" href="#/nova-receita">${icone("mais")}Nova receita</a>` : ""}
         </div>
         <label class="busca">
           ${icone("busca")}
@@ -358,6 +360,7 @@
           ${r.troca ? `<p class="ficha-troca">${esc(r.troca)}</p>` : ""}
           ${usos.length ? `<p class="ficha-usos">No cardápio: ${usos.map(esc).join(" · ")}</p>` : ""}
           <button type="button" class="botao botao-escuro botao-cozinha">${icone("fogo")}Modo cozinha · passo a passo</button>
+          ${r.casa ? `<p class="ficha-casa"><span class="selo-casa">Receita da casa</span>${Banco.conectado ? `<a href="#/editar-receita/${r.id}">${icone("lapis")}Editar</a>` : ""}</p>` : ""}
         </header>
 
         <div class="ficha-corpo">

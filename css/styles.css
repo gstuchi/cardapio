@@ -1731,3 +1731,157 @@ button {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* =========================================================
+   Banco da casa: formulários, selos e botões de troca
+   ========================================================= */
+.formulario,
+.casa-form {
+  display: grid;
+  gap: 16px;
+}
+.formulario {
+  padding: 18px 16px;
+}
+.casa-form {
+  margin-top: 14px;
+}
+.campo {
+  display: grid;
+  gap: 6px;
+}
+.campo > span {
+  font-weight: 700;
+  font-size: 15px;
+}
+.campo > span.papel {
+  justify-self: start;
+}
+.campo em {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--tinta-3);
+}
+.campo small {
+  font-size: 13px;
+  color: var(--tinta-3);
+  margin-top: -2px;
+}
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 11px 14px;
+  border-radius: var(--raio-p);
+  border: 1px solid var(--linha-forte);
+  background: var(--papel);
+  color: var(--tinta);
+  font: inherit;
+  font-size: 16px; /* 16px evita o zoom automático do iPhone ao focar */
+}
+.campo textarea {
+  resize: vertical;
+  line-height: 1.45;
+}
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--tomate);
+  box-shadow: 0 0 0 3px var(--tomate-suave);
+}
+.campos-lado {
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 480px) {
+  .campos-lado {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.campo-erro {
+  font-weight: 600;
+  color: var(--tomate);
+}
+.formulario-acoes {
+  display: grid;
+  gap: 8px;
+}
+@media (min-width: 560px) {
+  .formulario-acoes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.formulario-nota {
+  font-size: 14px;
+  color: var(--tinta-3);
+}
+.botao-perigo {
+  color: var(--tomate);
+  border-color: var(--tomate);
+  background: none;
+}
+.botao:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.selo-casa {
+  align-self: flex-start;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--oliva-suave);
+  color: var(--oliva);
+}
+.receita-cartao .selo-casa {
+  margin-top: 4px;
+}
+.dia-cabeca .selo-casa {
+  margin-left: auto;
+}
+.dia-selo + .selo-casa {
+  margin-left: 0;
+}
+.botao-nova {
+  margin-top: 16px;
+}
+.ficha-casa {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+.ficha-casa a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  min-height: 44px;
+}
+.ficha-casa .ico,
+.dia-trocar .ico {
+  width: 18px;
+  height: 18px;
+}
+.dia-trocar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--tinta-2);
+  text-underline-offset: 4px;
+}
+.casa {
+  margin-top: 14px;
+}
+.casa-resumo {
+  margin-top: 8px;
+  font-weight: 600;
+}

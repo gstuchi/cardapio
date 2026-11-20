@@ -3,18 +3,20 @@
  * Arquivos do app: responde do cache e atualiza por trás (a versão nova aparece na próxima abertura).
  * Ao mudar a lista de arquivos, suba a VERSAO.
  */
-const VERSAO = "cardapio-v1";
+const VERSAO = "cardapio-v2";
 const ARQUIVOS = [
   "./",
   "./index.html",
   "./css/styles.css",
   "./js/data.js",
   "./js/app.js",
+  "./js/banco.js",
   "./js/hoje.js",
   "./js/cardapio.js",
   "./js/receitas.js",
   "./js/compras.js",
   "./js/rotina.js",
+  "./js/editar.js",
   "./manifest.webmanifest",
   "./icons/icone.svg",
   "./icons/icone-192.png",
@@ -41,6 +43,7 @@ self.addEventListener("fetch", (e) => {
   if (req.method !== "GET") return;
   const url = new URL(req.url);
   const fonte = url.hostname === "fonts.googleapis.com" || url.hostname === "fonts.gstatic.com";
+  // Outras origens (como a API do banco da casa) passam direto, sem cache.
   if (url.origin !== location.origin && !fonte) return;
 
   e.respondWith(

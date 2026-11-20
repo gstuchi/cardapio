@@ -1,0 +1,13 @@
+# Worker do banco da casa do cardápio. Ver servidor/README.md.
+name = "cardapio-banco"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# Sites que podem chamar a API (o app publicado e o servidor local de teste).
+[vars]
+ORIGENS = "https://gstuchi.github.io,http://localhost:5173"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "cardapio"
+database_id = "00000000-0000-0000-0000-000000000000"
