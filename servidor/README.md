@@ -1,6 +1,6 @@
 # Banco da casa (Cloudflare Worker + D1)
 
-API pequena que guarda as receitas da casa e as trocas de prato do cardápio. Toda chamada leva o código da casa no cabeçalho `X-Casa`; o Worker guarda só o hash dele e bloqueia por uma hora o IP que errar o código 20 vezes. A validação de receitas e dias fica em [`src/regras.js`](src/regras.js).
+API pequena que guarda as receitas da casa e as trocas de prato do cardápio. Toda chamada leva o código da casa no cabeçalho `X-Casa`; o Worker guarda só o hash dele e bloqueia o IP que errar o código 20 vezes dentro da mesma hora do relógio, até a hora virar (quem erra às 14h50 volta a tentar às 15h). A validação de receitas e dias fica em [`src/regras.js`](src/regras.js).
 
 ## Ligar (uma vez)
 
@@ -35,4 +35,20 @@ Grava o hash do código no banco. Use frase longa, nada de PIN curto. No app, o 
 npm test
 ```
 
-Roda a validação e a API de ponta a ponta, num D1 local temporário. Para usar o app contra o Worker local: `npx wrangler d1 execute cardapio --local --file schema.sql`, `npm run codigo -- --local "código de teste"`, `npm run dev` e abra `http://localhost:5173/?local`.
+Roda a validação e a API de ponta a ponta, num D1 local temporário.
+
+Para usar o app contra o Worker local, prepare o banco local e o código de teste nesta pasta e suba o Worker (fica em `localhost:8787`):
+
+```bash
+npm run banco:local
+npm run codigo -- --local "código de teste"
+npm run dev
+```
+
+Em outro terminal, na raiz do repositório, sirva o app na porta 5173:
+
+```bash
+npx serve -l 5173
+```
+
+Abra `http://localhost:5173/?local` e digite o código de teste em "Como usar".

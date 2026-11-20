@@ -8,12 +8,11 @@ Cardápio de almoço de segunda a sexta em ciclo de duas semanas, com receita pa
 - **Cardápio**: as duas semanas, dia a dia, com o aviso da véspera.
 - **Receitas**: busca por prato ou ingrediente, ficha com ingredientes e passos para ir marcando, timers e modo cozinha (um passo por vez, letra grande, tela sempre acesa).
 - **Compras**: açougue, mercado e sacolão de cada semana. O que é marcado fica salvo no celular, e o que falta pode ser enviado por mensagem.
-- **Rotina**: como o cardápio funciona na prática e o ajuste da semana do ciclo.
+- **Rotina** (tela "Como usar"): como o cardápio funciona na prática, o ajuste da semana do ciclo e onde se digita o código da casa.
 
 ## Como mudar o cardápio
 
 Todo o conteúdo fica em [`js/data.js`](js/data.js): semanas, receitas, listas de compras e rotina. Para trocar um prato, uma quantidade ou um passo, edite só esse arquivo. Se mudar a lista de arquivos do app, suba a `VERSAO` em [`sw.js`](sw.js).
-
 
 ## Instalar no celular
 
@@ -22,7 +21,7 @@ Depois de publicado (GitHub Pages, Vercel ou qualquer hospedagem estática), abr
 - **iPhone (Safari)**: Compartilhar → Adicionar à Tela de Início.
 - **Android (Chrome)**: menu ⋮ → Instalar app.
 
-O app abre em tela cheia e funciona mesmo sem internet.
+O app abre em tela cheia e funciona mesmo sem internet. Se publicar fora de `gstuchi.github.io`, ponha o endereço novo em `ORIGENS` no [`servidor/wrangler.toml`](servidor/wrangler.toml) e rode o deploy do Worker de novo; sem isso, o banco da casa recusa as chamadas do app.
 
 ## Receitas da casa (banco compartilhado)
 
